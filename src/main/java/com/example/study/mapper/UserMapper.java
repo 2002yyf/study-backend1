@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    @Select(value = "select * from user where username=#{username} and password = #{password} and identity = #{identity}")
+    @Select(value = "select * from user where username=#{username} and password = #{password} and identity=#{identity}")
 //使用注解方式，也可用xml方式（编写.xml文件放在resources下且要在application.yml中配置localtion等）
     User selectOneUser (User u);
     //List<User> queryUserList();
