@@ -14,5 +14,6 @@ public class User {
     private String password;
     private String phone;
     private int isDelete;
+    private String identity;
 
 }

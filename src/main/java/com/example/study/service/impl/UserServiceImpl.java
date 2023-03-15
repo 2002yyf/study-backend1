@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectUser(User u){
-        if(u.getUsername()==null||u.getPassword()==null){
+        if(u.getUsername()==null||u.getPassword()==null||u.getIdentity()==null){
             return null;
         }
         return userMapper.selectOneUser(u);

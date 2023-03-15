@@ -16,20 +16,20 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     private UserService userService;
-    @PostMapping("/save")//用@RequestMapping，则什么请求类型都可以
+    @PostMapping("/register")//用@RequestMapping，则什么请求类型都可以
     //restful接口风格，可以用不同的请求方式实现不同的效果
     //使用@PathVariable注解，让方法参数的值对应绑到一个URL模板变量上
     public Result saveUser(@RequestBody UserRegisterDto userRegisterDto){
         if(userRegisterDto ==null){
             return Result.error("1","对象为空");
         }
-        if(userRegisterDto.getUsername()==null|| userRegisterDto.getPassword()==null){
+        if(userRegisterDto.getUsername()==null|| userRegisterDto.getPassword()==null||userRegisterDto.getIdentity()==null){
             return Result.error("2","信息不足");
         }
         User user=new User();
         user.setUsername(userRegisterDto.getUsername());
         user.setPassword(userRegisterDto.getPassword());
-        user.setPhone(userRegisterDto.getPhone());
+        user.setIdentity(userRegisterDto.getIdentity());
         if(!(userService.selectUser(user)==null)){
             return Result.error("3","账号已存在");
         }
@@ -40,11 +40,12 @@ public class UserController {
     @PostMapping("/login")
     public Result loginIn(@RequestBody UserLoginDto userLoginDto){
         if(userLoginDto==null){
-            return Result.error("2","账号密码没输入");
+            return Result.error("2","对象为空");
         }
         User user=new User();
         user.setUsername(userLoginDto.getUsername());
         user.setPassword(userLoginDto.getPassword());
+        user.setIdentity(userLoginDto.getIdentity());
         if(userService.selectUser(user)==null){
             return Result.error("1","账号不存在");
         }
