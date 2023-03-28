@@ -11,11 +11,40 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 22/03/2023 19:24:28
+ Date: 28/03/2023 14:59:27
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for grade
+-- ----------------------------
+DROP TABLE IF EXISTS `grade`;
+CREATE TABLE `grade`  (
+  `sid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `credit` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`sid`, `cid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of grade
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for student
@@ -25,12 +54,12 @@ CREATE TABLE `student`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `gender` bit(1) NULL DEFAULT NULL COMMENT '0女，1男',
-  `date_of_birth` date NULL DEFAULT NULL,
+  `birthday` datetime(0) NULL DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `admission_date` date NULL DEFAULT NULL COMMENT '入学日期',
-  `graduation_date` date NULL DEFAULT NULL COMMENT '毕业日期',
+  `admission_date` datetime(0) NULL DEFAULT NULL COMMENT '入学日期',
+  `graduation_date` datetime(0) NULL DEFAULT NULL COMMENT '毕业日期',
   `major` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `gpa` decimal(3, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -39,7 +68,7 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'abc', b'1', NULL, '123', '123', NULL, NULL, NULL, '计算机', 4.24);
+INSERT INTO `student` VALUES (1, 'abc', b'1', '2002-08-18 00:00:00', '123', '123', '杭州', '2002-08-18 00:00:00', '2002-08-18 00:00:01', '计算机1', 4.24);
 
 -- ----------------------------
 -- Table structure for user
@@ -53,7 +82,7 @@ CREATE TABLE `user`  (
   `isDeleted` int(0) NULL DEFAULT NULL,
   `identity` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user

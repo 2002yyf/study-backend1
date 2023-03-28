@@ -19,17 +19,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student selectStudent(Student s){
-//        if(u.getUsername()==null||u.getPassword()==null||u.getIdentity()==null){
-//            return null;
-//        }
-//        return userMapper.selectOneUser(u);
-        return null;
+        return studentMapper.selectStudent(s);
     }
 
-    @Override
-    public List<Student> findAll() {
-        return studentMapper.selectStudent();
-    }
+
 
 
 }

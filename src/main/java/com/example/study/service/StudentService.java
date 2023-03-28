@@ -9,6 +9,5 @@ import java.util.List;
 public interface StudentService {
     void saveStudent(Student s);
     Student selectStudent(Student s);
-    List<Student> findAll();
 
 }
