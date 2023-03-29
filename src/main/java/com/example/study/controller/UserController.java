@@ -19,7 +19,7 @@ public class UserController {
     @PostMapping("/register")//用@RequestMapping，则什么请求类型都可以
     //restful接口风格，可以用不同的请求方式实现不同的效果
     //使用@PathVariable注解，让方法参数的值对应绑到一个URL模板变量上
-    public Result saveUser(@RequestBody UserRegisterDto userRegisterDto){
+    public Result<User> saveUser(@RequestBody UserRegisterDto userRegisterDto){
         if(userRegisterDto ==null){
             return Result.error("1","对象为空");
         }
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result loginIn(@RequestBody UserLoginDto userLoginDto){
+    public Result<User> loginIn(@RequestBody UserLoginDto userLoginDto){
         if(userLoginDto==null){
             return Result.error("2","对象为空");
         }

@@ -57,8 +57,8 @@ public class Result<T> {
         return result;
     }
 
-    public static Result error(String code, String msg) {
-        Result result = new Result();
+    public static <T> Result<T> error(String code, String msg) {
+        Result<T> result = new Result<>();
         result.setCode(code);
         result.setMsg(msg);
         return result;

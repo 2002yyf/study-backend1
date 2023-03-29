@@ -1,12 +1,21 @@
 package com.example.study.controller;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.example.study.domain.Course;
+import com.example.study.domain.Score;
+import com.example.study.domain.User;
+import com.example.study.dto.StudentLearnDto;
+import com.example.study.service.CourseService;
+import com.example.study.service.ScoreService;
 import com.example.study.utils.Result;
 import com.example.study.domain.Student;
 import com.example.study.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -14,16 +23,38 @@ import java.util.List;
 //被@Controller这个注解的类，中的所有方法，如果返回值是String，并且有具体的页面可以跳转，那么就会被视图解析器解析
 @RequestMapping("/student")
 public class StudentController {
-    @Resource
+    @Autowired
     private StudentService studentService;
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private ScoreService scoreService;
 
     @GetMapping("/information")
-    public Result allStudent(@RequestParam Integer id){
+    public Result<Student> allStudent(@RequestParam Integer id){
         Student student = new Student();
         student.setId(id);
-        student = studentService.selectStudent(student);
+        student = studentService.getById(id);
         return Result.success(student,"id为"+id+"的学生信息");
     }
+
+    @PostMapping("/edit")
+    public Result<Student> editStudent(@RequestBody Student s){
+        studentService.updateById(s);
+        return Result.success(s,"修改成功");
+    }
+
+    @GetMapping("/credit")
+    public Result<List> creditInformation(@RequestParam Integer id){
+        List<StudentLearnDto> sld = scoreService.selectScore(id);
+        return Result.success(sld,"查询成功");
+    }
+
+
+
+
+
+
 
 //    @PostMapping("/login")
 //    public Result loginIn(@RequestBody studentLoginDto studentLoginDto){
