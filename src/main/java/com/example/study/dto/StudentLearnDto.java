@@ -1,5 +1,6 @@
 package com.example.study.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class StudentLearnDto {
     private Integer cid;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date time;
     private String name;
     private Integer credit;
