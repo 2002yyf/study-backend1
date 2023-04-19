@@ -1,4 +1,5 @@
 package com.example.study.controller;
+
 import com.example.study.domain.Teacher;
 import com.example.study.service.TeacherService;
 import com.example.study.utils.Result;
@@ -19,21 +20,24 @@ public class TeacherController {
 
 
     @PostMapping("/edit")
-    public Result<Teacher> editTeacher(@RequestBody Teacher t){
-        teacherService.updateById(t);
-        return Result.success(t,"修改成功");
+    public Result<Teacher> editTeacher(@RequestBody Teacher t) {
+        Integer id = t.getId();
+        Teacher teacher = teacherService.getById(id);
+        if (teacher == null) {
+            return Result.error("1", "无此教师");
+        } else {
+            teacherService.updateById(t);
+            return Result.success(t, "修改成功");
+        }
     }
 
     @GetMapping("/information")
-    public Result<Teacher> selectTeacher(@RequestParam Integer id){
+    public Result<Teacher> selectTeacher(@RequestParam Integer id) {
         Teacher t = teacherService.getById(id);
-        if(t!= null)
-        return Result.success(t,"查询成果");
-        else return Result.error("1","无此用户");
+        if (t != null)
+            return Result.success(t, "查询成果");
+        else return Result.error("1", "无此用户");
     }
-
-
-
 
 
 }
