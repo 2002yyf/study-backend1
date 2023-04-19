@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 12/04/2023 19:36:26
+ Date: 12/04/2023 19:53:22
 */
 
 SET NAMES utf8mb4;
@@ -104,10 +104,8 @@ CREATE TABLE `student`  (
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `admission_date` date NULL DEFAULT NULL COMMENT '入学日期',
   `graduation_date` date NULL DEFAULT NULL COMMENT '毕业日期',
   `major` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `gpa` decimal(3, 2) NULL DEFAULT NULL,
   `grade` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '个人简介',
   PRIMARY KEY (`id`) USING BTREE
@@ -116,7 +114,7 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'abcd', NULL, b'1', '2022-01-03', NULL, '2222222222151', NULL, NULL, NULL, NULL, 3.60, NULL, NULL);
+INSERT INTO `student` VALUES (1, 'abcd', NULL, b'1', '2022-01-03', NULL, '2222222222151', NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for teacher

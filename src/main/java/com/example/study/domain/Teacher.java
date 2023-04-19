@@ -9,23 +9,23 @@ import java.sql.Date;
 
 //User类主要用于Java数据和数据库表的映射
 @Data
-public class Student implements Serializable {
+public class Teacher implements Serializable {
     private Integer id;
-
+    private Integer tnum;
     private String name;
-    private Integer snum;
-    private Byte gender;
-
+    private String address;
+    private String position;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date birthday;
-    private String email;
-    private String phone;
-    private String address;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
-    private Date graduation_date;
-    private String major;
-    private String grade;
+    private Date appointment_time;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
+    private Date leave_time;
+    private String email;
+    private String phone;
     private String introduction;
 }
