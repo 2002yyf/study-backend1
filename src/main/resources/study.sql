@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 19/04/2023 19:12:30
+ Date: 19/04/2023 19:34:03
 */
 
 SET NAMES utf8mb4;
@@ -70,6 +70,7 @@ CREATE TABLE `institution`  (
 -- ----------------------------
 -- Records of institution
 -- ----------------------------
+INSERT INTO `institution` VALUES (3, 'abc', NULL, '公司', NULL, NULL, '确实是一个非常好的公司');
 
 -- ----------------------------
 -- Table structure for score
@@ -139,7 +140,7 @@ CREATE TABLE `teacher`  (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES (4, 125, 'Mr.y', NULL, '教授', '1956-02-03', NULL, NULL, NULL, NULL, '一名好老师');
+INSERT INTO `teacher` VALUES (4, 125, 'abc', NULL, '教授', '1956-02-03', NULL, NULL, NULL, NULL, '一名好老师');
 
 -- ----------------------------
 -- Table structure for user
