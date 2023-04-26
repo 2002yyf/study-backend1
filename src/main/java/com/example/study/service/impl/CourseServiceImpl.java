@@ -17,4 +17,11 @@ import java.util.Map;
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseMapper,Course> implements CourseService {
 
+    @Autowired
+    CourseMapper courseMapper;
+    @Override
+    public List<Course> totalCourse(String major){
+        return courseMapper.totalCourse(major);
+    }
+
 }

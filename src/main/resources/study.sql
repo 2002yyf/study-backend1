@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 19/04/2023 19:34:03
+ Date: 26/04/2023 19:14:58
 */
 
 SET NAMES utf8mb4;
@@ -27,14 +27,39 @@ CREATE TABLE `course`  (
   `credit` int(0) NULL DEFAULT NULL,
   `hour` int(0) NULL DEFAULT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '课程类型：专业课、选修课等',
+  `major` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES (1, '数据结构', 4, 64, '必修课');
-INSERT INTO `course` VALUES (2, '操作系统', 5, 32, '必修课');
+INSERT INTO `course` VALUES (1, '数据结构', 4, 64, '必修课', '计算机');
+INSERT INTO `course` VALUES (2, '操作系统', 5, 32, '必修课', '计算机');
+INSERT INTO `course` VALUES (3, '理论力学', 4, 64, '必修课', '机械');
+
+-- ----------------------------
+-- Table structure for experience
+-- ----------------------------
+DROP TABLE IF EXISTS `experience`;
+CREATE TABLE `experience`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `sid` int(0) NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `start_time` date NULL DEFAULT NULL,
+  `end_time` date NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of experience
+-- ----------------------------
+INSERT INTO `experience` VALUES (1, 1, '实习', 'ovo', '2022-01-01', '2022-03-03', '很好的经历', '待批阅');
+INSERT INTO `experience` VALUES (2, 1, '竞赛', '互联网+', '2022-01-03', '2023-01-01', '很好的比赛', '待批阅');
+INSERT INTO `experience` VALUES (3, 2, '实习', '大厂', '2022-01-01', NULL, '很好的经历', '已批阅');
 
 -- ----------------------------
 -- Table structure for grade
@@ -65,12 +90,14 @@ CREATE TABLE `institution`  (
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of institution
 -- ----------------------------
-INSERT INTO `institution` VALUES (3, 'abc', NULL, '公司', NULL, NULL, '确实是一个非常好的公司');
+INSERT INTO `institution` VALUES (3, 'abc', NULL, '公司', '1331313111', NULL, '是一个好的机构');
+INSERT INTO `institution` VALUES (6, 'hdu', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `institution` VALUES (8, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for score
@@ -101,7 +128,7 @@ CREATE TABLE `student`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `snum` int(0) NULL DEFAULT NULL COMMENT '学号',
-  `gender` bit(1) NULL DEFAULT NULL COMMENT '0女，1男',
+  `gender` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `birthday` date NULL DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
@@ -116,7 +143,8 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'Mr.y', NULL, b'1', '2022-01-03', NULL, '2222222222151', NULL, NULL, NULL, NULL, '一个勤奋好学的学生');
+INSERT INTO `student` VALUES (1, 'Mr.y', NULL, 'female', '2022-01-03', NULL, '2222222222151', NULL, '2022-06-06', NULL, NULL, '一个勤奋好学的学生');
+INSERT INTO `student` VALUES (2, '好同学', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for teacher
@@ -126,6 +154,7 @@ CREATE TABLE `teacher`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `tnum` int(0) NOT NULL COMMENT '职工号',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `gender` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '职位',
   `birthday` date NULL DEFAULT NULL,
@@ -140,7 +169,7 @@ CREATE TABLE `teacher`  (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES (4, 125, 'abc', NULL, '教授', '1956-02-03', NULL, NULL, NULL, NULL, '一名好老师');
+INSERT INTO `teacher` VALUES (4, 125, 'abc', 'male', NULL, '教授', '1956-02-03', '2002-01-01', '2022-01-01', NULL, NULL, '是一个好的老师');
 
 -- ----------------------------
 -- Table structure for user
@@ -153,14 +182,14 @@ CREATE TABLE `user`  (
   `isDeleted` int(0) NULL DEFAULT NULL,
   `identity` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'abc', '123', 0, '1');
-INSERT INTO `user` VALUES (2, 'abcd', '1', 0, NULL);
-INSERT INTO `user` VALUES (3, 'abcd', '3', 0, NULL);
+INSERT INTO `user` VALUES (1, 'student', '1', 0, '1');
+INSERT INTO `user` VALUES (2, 'teacher', '1', 0, '2');
+INSERT INTO `user` VALUES (3, 'insti', '1', 0, '3');
 INSERT INTO `user` VALUES (4, 'abcd', '4', 0, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

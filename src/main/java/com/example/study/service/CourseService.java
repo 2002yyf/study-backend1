@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface CourseService extends IService<Course> {
-
+    public List<Course> totalCourse(String major);
 }

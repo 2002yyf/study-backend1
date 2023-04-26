@@ -12,5 +12,5 @@ public class Course implements Serializable {
     private Integer credit;
     private Integer hour;
     private String type;
-
+    private String major;
 }

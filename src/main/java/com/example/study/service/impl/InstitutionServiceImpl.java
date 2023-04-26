@@ -7,9 +7,16 @@ import com.example.study.mapper.InstitutionMapper;
 import com.example.study.mapper.StudentMapper;
 import com.example.study.service.InstitutionService;
 import com.example.study.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class InstitutionServiceImpl extends ServiceImpl<InstitutionMapper, Institution> implements InstitutionService {
+    @Autowired
+    private InstitutionMapper institutionMapper;
+    @Override
+    public Integer sumInstitution(){
+        return institutionMapper.sumInstitution();
+    }
 }

@@ -27,7 +27,8 @@ public class InstitutionController {
             return Result.error("1", "无此机构");
         } else {
             institutionService.updateById(i);
-            return Result.success(i, "修改成功");
+
+            return Result.success(institution, "修改成功");
         }
     }
 
@@ -38,6 +39,9 @@ public class InstitutionController {
             return Result.success(i, "查询成果");
         else return Result.error("1", "无此机构");
     }
-
+    @GetMapping("/sum")
+    public Result<Integer> sumInstitution(){
+        return Result.success(institutionService.sumInstitution(),"机构总数查询成果");
+    }
 
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface InstitutionService extends IService<Institution> {
-
+    public Integer sumInstitution();
 }

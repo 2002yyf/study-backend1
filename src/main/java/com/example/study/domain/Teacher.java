@@ -20,12 +20,13 @@ public class Teacher implements Serializable {
     private Date birthday;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
-    private Date appointment_time;
+    private Date appointmentTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
-    private Date leave_time;
+    private Date leaveTime;
     private String email;
     private String phone;
     private String introduction;
+    private String gender;
 }

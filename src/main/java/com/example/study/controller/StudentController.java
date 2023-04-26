@@ -1,8 +1,5 @@
 package com.example.study.controller;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.study.domain.Course;
-import com.example.study.domain.Score;
-import com.example.study.domain.User;
 import com.example.study.dto.StudentLearnDto;
 import com.example.study.service.CourseService;
 import com.example.study.service.ScoreService;
@@ -42,14 +39,20 @@ public class StudentController {
     }
 
     @GetMapping("/credit")
-    public Result<List> creditInformation(@RequestParam Integer id){
+    public Result<List<StudentLearnDto>> creditInformation(@RequestParam Integer id){
         List<StudentLearnDto> sld = scoreService.selectScore(id);
         return Result.success(sld,"查询成功");
     }
 
+    @GetMapping("/sum")
+    public Result<Integer> sumStudent(){
+        return Result.success(studentService.sumStudent(),"学生总数查询成果");
+    }
 
-
-
+    @GetMapping("/totalCourse")
+    public Result<List<Course>> totalCourse(@RequestParam String major){
+        return Result.success(courseService.totalCourse(major),"该学生需要学的全部课程");
+    }
 
 
 
