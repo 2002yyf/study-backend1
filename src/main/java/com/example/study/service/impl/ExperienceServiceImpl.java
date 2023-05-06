@@ -22,5 +22,8 @@ public class ExperienceServiceImpl extends ServiceImpl<ExperienceMapper, Experie
         wrapper.eq("sid",sid);
         return experienceMapper.selectList(wrapper);
     }
-
+    @Override
+    public void add(Experience e){
+        experienceMapper.insert(e);
+    }
 }

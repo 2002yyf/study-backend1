@@ -1,5 +1,4 @@
 package com.example.study.controller;
-
 import com.example.study.domain.Experience;
 import com.example.study.domain.Institution;
 import com.example.study.service.ExperienceService;
@@ -25,5 +24,12 @@ public class ExperienceController {
     @GetMapping("/all")
     public Result<List<Experience>> allExperience(@RequestParam Integer sid){
         return Result.success(experienceService.findAll(sid),"id为"+sid+"全部实习经历");
+    }
+
+    @PostMapping("/add")
+    public Result<Experience> addExperience(@RequestBody Experience e){
+
+        experienceService.add(e);
+        return Result.success(e,"插入成功");
     }
 }
