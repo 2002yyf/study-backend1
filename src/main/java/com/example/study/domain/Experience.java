@@ -25,4 +25,5 @@ public class Experience implements Serializable {
     private Date endTime;
     private String description;
     private String status;
+    private String filename;
 }

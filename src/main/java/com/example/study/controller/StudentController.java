@@ -1,5 +1,6 @@
 package com.example.study.controller;
 import com.example.study.domain.Course;
+import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
 import com.example.study.service.CourseService;
 import com.example.study.service.ScoreService;
@@ -38,9 +39,10 @@ public class StudentController {
         return Result.success(s,"修改成功");
     }
 
+    //查学分
     @GetMapping("/credit")
-    public Result<List<StudentLearnDto>> creditInformation(@RequestParam Integer id){
-        List<StudentLearnDto> sld = scoreService.selectScore(id);
+    public Result<List<StudentLearnDto>> creditInformation(@RequestParam Integer id,@RequestParam String major){
+        List<StudentLearnDto> sld = scoreService.selectScore(id,major);
         return Result.success(sld,"查询成功");
     }
 
@@ -54,6 +56,10 @@ public class StudentController {
         return Result.success(courseService.totalCourse(major),"该学生需要学的全部课程");
     }
 
+    @GetMapping("/studentInfo")
+    public Result<List<StudentInfoDto>> studentInfo(){
+        return Result.success(scoreService.studentInfo(),"全部学生信息");
+    }
 
 
 //    @PostMapping("/login")
