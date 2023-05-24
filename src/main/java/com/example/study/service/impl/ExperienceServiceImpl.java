@@ -26,4 +26,9 @@ public class ExperienceServiceImpl extends ServiceImpl<ExperienceMapper, Experie
     public void add(Experience e){
         experienceMapper.insert(e);
     }
+
+    @Override
+    public void saveE(Experience e){
+        experienceMapper.updateById(e);
+    }
 }
