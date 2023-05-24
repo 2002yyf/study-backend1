@@ -1,9 +1,11 @@
 package com.example.study.controller;
 import com.example.study.domain.Course;
+import com.example.study.domain.User;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
 import com.example.study.service.CourseService;
 import com.example.study.service.ScoreService;
+import com.example.study.service.UserService;
 import com.example.study.utils.Result;
 import com.example.study.domain.Student;
 import com.example.study.service.StudentService;
@@ -24,7 +26,8 @@ public class StudentController {
     private CourseService courseService;
     @Autowired
     private ScoreService scoreService;
-
+    @Autowired
+    private UserService userService;
     @GetMapping("/information")
     public Result<Student> allStudent(@RequestParam Integer id){
         Student student = new Student();
@@ -61,6 +64,15 @@ public class StudentController {
         return Result.success(scoreService.studentInfo(),"全部学生信息");
     }
 
+    @PostMapping("/addStudent")
+    public Result addStudent(@RequestBody Student s){
+        studentService.addStudent(s);
+        User u = new User();
+        u.setUsername(s.getSnum().toString());
+        u.setPassword(s.getSnum().toString());
+        userService.addUser(u);
+        return Result.success(null,"添加成功");
+    }
 
 //    @PostMapping("/login")
 //    public Result loginIn(@RequestBody studentLoginDto studentLoginDto){

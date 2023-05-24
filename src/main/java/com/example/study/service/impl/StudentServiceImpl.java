@@ -16,4 +16,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper,Student> imple
     public Integer sumStudent(){
         return studentMapper.sumStudent();
     }
+    @Override
+    public void addStudent(Student s){
+        studentMapper.insert(s);
+    }
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 06/05/2023 18:25:31
+ Date: 10/05/2023 19:44:03
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `course`  (
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '课程类型：专业课、选修课等',
   `major` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of course
@@ -37,6 +37,7 @@ CREATE TABLE `course`  (
 INSERT INTO `course` VALUES (1, '数据结构', 4, 64, '必修课', '计算机');
 INSERT INTO `course` VALUES (2, '操作系统', 5, 32, '必修课', '计算机');
 INSERT INTO `course` VALUES (3, '理论力学', 4, 64, '必修课', '机械');
+INSERT INTO `course` VALUES (4, '计算机网络', 4, 64, '必修课', '计算机');
 
 -- ----------------------------
 -- Table structure for experience
@@ -51,16 +52,18 @@ CREATE TABLE `experience`  (
   `end_time` date NULL DEFAULT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '待批阅',
+  `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of experience
 -- ----------------------------
-INSERT INTO `experience` VALUES (1, 1, '实习', 'ovo', '2022-01-01', '2022-03-03', '很好的经历', '');
-INSERT INTO `experience` VALUES (2, 1, '竞赛', '互联网+', '2022-01-03', '2023-01-01', '很好的比赛', '');
-INSERT INTO `experience` VALUES (3, 2, '实习', '大厂', '2022-01-01', NULL, '很好的经历', '');
-INSERT INTO `experience` VALUES (14, 1, NULL, '大厂', '2022-01-01', NULL, NULL, '待批阅');
+INSERT INTO `experience` VALUES (1, 1, '实习', 'ovo', '2022-01-01', '2022-03-03', '很好的经历', '', NULL);
+INSERT INTO `experience` VALUES (2, 1, '竞赛', '互联网+', '2022-01-03', '2023-01-01', '很好的比赛', '', NULL);
+INSERT INTO `experience` VALUES (3, 2, '实习', '大厂', '2022-01-01', NULL, '很好的经历', '', NULL);
+INSERT INTO `experience` VALUES (14, 1, NULL, '大厂', '2022-01-01', NULL, NULL, '待批阅', NULL);
+INSERT INTO `experience` VALUES (15, 1, NULL, '大厂', '2022-01-01', NULL, NULL, '待批阅', 'abc.docx');
 
 -- ----------------------------
 -- Table structure for grade
@@ -113,13 +116,15 @@ CREATE TABLE `score`  (
   `gpa` double(255, 2) NULL DEFAULT NULL,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of score
 -- ----------------------------
 INSERT INTO `score` VALUES (1, 1, 2, 90, '2022-10-15', 4.50, '通过');
 INSERT INTO `score` VALUES (2, 1, 1, 80, '2022-01-06', 5.00, '通过');
+INSERT INTO `score` VALUES (3, 2, 1, 85, NULL, NULL, '通过');
+INSERT INTO `score` VALUES (4, 2, 4, 90, NULL, 5.00, '未通过');
 
 -- ----------------------------
 -- Table structure for student
@@ -144,8 +149,8 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'Mr.y', NULL, 'female', '2022-01-03', NULL, '2222222222151', NULL, '2022-06-06', NULL, NULL, '一个勤奋好学的学生');
-INSERT INTO `student` VALUES (2, '好同学', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `student` VALUES (1, 'Mr.y', 200101, 'female', '2022-01-03', NULL, '2222222222151', NULL, '2022-06-06', NULL, NULL, '一个勤奋好学的学生');
+INSERT INTO `student` VALUES (2, '好同学', 200102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for teacher

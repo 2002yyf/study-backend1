@@ -1,5 +1,6 @@
 package com.example.study.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.study.domain.User;
 import com.example.study.mapper.UserMapper;
 import com.example.study.service.UserService;
@@ -9,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
     public void saveUser(User u){
-        u.setIsDelete(0);
+        u.setIsDeleted(0);
         userMapper.insertUser(u);
     }
 
@@ -31,5 +32,8 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-
+    @Override
+    public void addUser(User u){
+        userMapper.insert(u);
+    }
 }
