@@ -13,4 +13,5 @@ import java.util.List;
 public interface ScoreService extends IService<Score> {
     List<StudentLearnDto> selectScore(Integer id,String major);
     List<StudentInfoDto> studentInfo();
+    void addScore(Score s);
 }

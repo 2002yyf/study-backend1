@@ -29,4 +29,8 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
     public List<StudentInfoDto> studentInfo(){
         return scoreMapper.studentInfo();
     }
+    @Override
+    public void addScore(Score s){
+        scoreMapper.insert(s);
+    }
 }

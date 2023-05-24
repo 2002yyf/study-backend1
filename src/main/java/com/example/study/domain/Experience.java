@@ -15,6 +15,7 @@ public class Experience implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private Integer sid;
+    private String sname;
     private String type;
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

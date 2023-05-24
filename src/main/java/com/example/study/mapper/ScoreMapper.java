@@ -23,4 +23,8 @@ public interface ScoreMapper extends BaseMapper<Score> {
             " as credit,(select count(*) from experience where type = '竞赛' and sid = student.id) as competitionnum," +
             "(select count(*) from experience where type = '实习' and sid = student.id) as intershipnum,grade from student")
     List<StudentInfoDto> studentInfo();
+
+
+
+
 }

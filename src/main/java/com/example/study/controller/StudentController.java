@@ -1,6 +1,8 @@
 package com.example.study.controller;
 import com.example.study.domain.Course;
+import com.example.study.domain.Score;
 import com.example.study.domain.User;
+import com.example.study.dto.ScoreAddDto;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
 import com.example.study.service.CourseService;
@@ -71,7 +73,24 @@ public class StudentController {
         u.setUsername(s.getSnum().toString());
         u.setPassword(s.getSnum().toString());
         userService.addUser(u);
-        return Result.success(null,"添加成功");
+        return Result.success(null,"添加学生成功");
+    }
+
+    @PostMapping("/addScore")
+    public Result addScore(@RequestBody ScoreAddDto sa){
+        Score score = new Score();
+        score.setScore(sa.getScore());
+        score.setSid(sa.getSnum());
+        score.setCid(sa.getCid());
+        score.setTime(sa.getTime());
+        score.setGpa(sa.getGpa());
+        if (sa.getScore()>=60){
+            score.setStatus("通过");
+        }else {
+            score.setStatus("未通过");
+        }
+        scoreService.addScore(score);
+        return Result.success(null,"添加学生成绩成功");
     }
 
 //    @PostMapping("/login")
