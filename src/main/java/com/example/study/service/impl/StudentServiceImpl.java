@@ -7,6 +7,8 @@ import com.example.study.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class StudentServiceImpl extends ServiceImpl<StudentMapper,Student> implements StudentService {
@@ -19,5 +21,9 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper,Student> imple
     @Override
     public void addStudent(Student s){
         studentMapper.insert(s);
+    }
+    @Override
+    public List<Student> allInfo(){
+        return studentMapper.selectList(null);
     }
 }

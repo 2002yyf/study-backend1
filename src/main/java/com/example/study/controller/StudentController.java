@@ -3,6 +3,7 @@ import com.example.study.domain.Course;
 import com.example.study.domain.Score;
 import com.example.study.domain.User;
 import com.example.study.dto.ScoreAddDto;
+import com.example.study.dto.ScoreInfoDto;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
 import com.example.study.service.CourseService;
@@ -11,6 +12,7 @@ import com.example.study.service.UserService;
 import com.example.study.utils.Result;
 import com.example.study.domain.Student;
 import com.example.study.service.StudentService;
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,6 +94,24 @@ public class StudentController {
         scoreService.addScore(score);
         return Result.success(null,"添加学生成绩成功");
     }
+
+//    @PostMapping("editScore")
+//    public Result editScore(@RequestParam Integer sid,@RequestParam Integer cid,
+//                            @RequestParam Integer score,){
+//
+//    }
+    @GetMapping("/scoreInfo")
+    public Result<List<ScoreInfoDto>> scoreInfo(){
+        List<ScoreInfoDto> sinfo = scoreService.scoreInfo();
+        return Result.success(sinfo,"学生成绩信息");
+    }
+
+    @GetMapping("/allStudentInfo")
+    public Result<List<Student>> allStudentInfo(){
+        List<Student> st = studentService.allInfo();
+        return Result.success(st,"全部学生信息");
+    }
+
 
 //    @PostMapping("/login")
 //    public Result loginIn(@RequestBody studentLoginDto studentLoginDto){

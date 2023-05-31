@@ -1,4 +1,5 @@
 package com.example.study.controller;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.example.study.domain.Experience;
 import com.example.study.domain.Institution;
 import com.example.study.service.ExperienceService;
@@ -31,5 +32,17 @@ public class ExperienceController {
 
         experienceService.add(e);
         return Result.success(e,"插入成功");
+    }
+
+    @GetMapping("/notAudit")
+    public Result<List<Experience>> notAudit(){
+        List<Experience> e = experienceService.not_audit();
+        return Result.success(e,"未批阅经历名单");
+    }
+
+    @PostMapping("/audit")
+    public Result audit(Integer id){
+        experienceService.audit(id);
+        return Result.success(null,"修改成功");
     }
 }

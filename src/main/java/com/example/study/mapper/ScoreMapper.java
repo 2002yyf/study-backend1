@@ -3,11 +3,14 @@ package com.example.study.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.study.domain.Score;
 import com.example.study.domain.Student;
+import com.example.study.dto.ScoreInfoDto;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,7 +27,9 @@ public interface ScoreMapper extends BaseMapper<Score> {
             "(select count(*) from experience where type = '实习' and sid = student.id) as intershipnum,grade from student")
     List<StudentInfoDto> studentInfo();
 
-
+    @Select(value = "select st.snum,st.name,st.major,c.id as cid,c.name as cname,c.type,c.credit,s.gpa,s.time,s.score" +
+            " from score s inner join course c on s.cid = c.id inner join student st on s.sid = st.id")
+    List<ScoreInfoDto> scoreInfo();
 
 
 }

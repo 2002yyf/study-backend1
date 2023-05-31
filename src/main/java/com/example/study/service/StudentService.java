@@ -9,4 +9,5 @@ import java.util.List;
 public interface StudentService extends IService<Student> {
     Integer sumStudent();
     void addStudent(Student s);
+    List<Student> allInfo();
 }
