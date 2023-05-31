@@ -12,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScoreInfoDto {
+    public Integer id;
     private Integer snum;
     private String name;
     private String major;

@@ -27,7 +27,7 @@ public interface ScoreMapper extends BaseMapper<Score> {
             "(select count(*) from experience where type = '实习' and sid = student.id) as intershipnum,grade from student")
     List<StudentInfoDto> studentInfo();
 
-    @Select(value = "select st.snum,st.name,st.major,c.id as cid,c.name as cname,c.type,c.credit,s.gpa,s.time,s.score" +
+    @Select(value = "select s.id,st.snum,st.name,st.major,c.id as cid,c.name as cname,c.type,c.credit,s.gpa,s.time,s.score" +
             " from score s inner join course c on s.cid = c.id inner join student st on s.sid = st.id")
     List<ScoreInfoDto> scoreInfo();
 
