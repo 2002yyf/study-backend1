@@ -6,6 +6,7 @@ import com.example.study.domain.Student;
 import com.example.study.dto.ScoreInfoDto;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
+import com.example.study.dto.StudentScoreDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -31,5 +32,7 @@ public interface ScoreMapper extends BaseMapper<Score> {
             " from score s inner join course c on s.cid = c.id inner join student st on s.sid = st.id")
     List<ScoreInfoDto> scoreInfo();
 
-
+    @Select(value = "select c.id,c.name,c.type,c.credit,s.time,s.score,s.gpa,s.status from course c inner join score s on c.id = s.cid" +
+            " where s.sid = #{id}")
+    List<StudentScoreDto> studentScore(Integer id);
 }

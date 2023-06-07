@@ -5,6 +5,7 @@ import com.example.study.domain.Score;
 import com.example.study.dto.ScoreInfoDto;
 import com.example.study.dto.StudentInfoDto;
 import com.example.study.dto.StudentLearnDto;
+import com.example.study.dto.StudentScoreDto;
 import com.example.study.mapper.ScoreMapper;
 import com.example.study.service.ScoreService;
 import org.apache.ibatis.annotations.DeleteProvider;
@@ -38,5 +39,9 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
     @Override
     public List<ScoreInfoDto> scoreInfo(){
         return scoreMapper.scoreInfo();
+    }
+    @Override
+    public List<StudentScoreDto> studentScore(Integer id){
+    return scoreMapper.studentScore(id);
     }
 }

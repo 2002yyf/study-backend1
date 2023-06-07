@@ -2,10 +2,7 @@ package com.example.study.controller;
 import com.example.study.domain.Course;
 import com.example.study.domain.Score;
 import com.example.study.domain.User;
-import com.example.study.dto.ScoreAddDto;
-import com.example.study.dto.ScoreInfoDto;
-import com.example.study.dto.StudentInfoDto;
-import com.example.study.dto.StudentLearnDto;
+import com.example.study.dto.*;
 import com.example.study.service.CourseService;
 import com.example.study.service.ScoreService;
 import com.example.study.service.UserService;
@@ -111,6 +108,14 @@ public class StudentController {
         List<Student> st = studentService.allInfo();
         return Result.success(st,"全部学生信息");
     }
+
+    @GetMapping("/studentScore")
+    public Result<List<StudentScoreDto>> studentScore(Integer id){
+        List<StudentScoreDto> ss = scoreService.studentScore(id);
+        return Result.success(ss,"学号为"+id+"的学生的全部成绩");
+    }
+
+
 
 
 //    @PostMapping("/login")
