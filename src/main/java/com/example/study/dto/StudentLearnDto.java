@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentLearnDto {
-    private Integer cid;
+    private Integer id;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date time;
     private String name;

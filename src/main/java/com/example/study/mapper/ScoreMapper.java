@@ -17,8 +17,8 @@ import java.util.List;
 @Mapper //这个注解表示了本类是一个mybatis 的mapper类
 public interface ScoreMapper extends BaseMapper<Score> {
 
-    @Select(value = "select a.cid,a.score,a.time,a.gpa,a.status,b.name,b.credit,b.hour,b.type from (select * from score where sid = #{id})" +
-            " as a right join course as b on a.cid = b.id where major = #{major}")
+    @Select(value = "select b.id,a.score,a.time,a.gpa,a.status,b.name,b.credit,b.hour,b.type from (select * from score where sid = #{id})" +
+             " as a right join course as b on a.cid = b.id where major = #{major}")
     List<StudentLearnDto> selectScore(Integer id,String major);
 
     @Select(value = "select snum,name,gender,birthday,major,(select avg(gpa) from score where sid = student.id) as gpa," +

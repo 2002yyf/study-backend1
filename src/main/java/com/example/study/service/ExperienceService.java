@@ -10,5 +10,5 @@ public interface ExperienceService extends IService<Experience> {
     void add(Experience e);
     void saveE(Experience e);
     List<Experience> not_audit();
-    void audit(Integer id);
+    void audit(Integer id,Integer pass);
 }

@@ -41,8 +41,8 @@ public class ExperienceController {
     }
 
     @PostMapping("/audit")
-    public Result audit(Integer id){
-        experienceService.audit(id);
+    public Result audit(Integer id,Integer pass){
+        experienceService.audit(id,pass);
         return Result.success(null,"修改成功");
     }
 }

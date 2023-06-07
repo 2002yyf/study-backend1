@@ -40,9 +40,13 @@ public class ExperienceServiceImpl extends ServiceImpl<ExperienceMapper, Experie
         return experienceMapper.selectList(wrapper);
     }
     @Override
-    public void audit(Integer id){
+    public void audit(Integer id,Integer pass){
         UpdateWrapper<Experience> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("id",id).set("status","已通过");
+        if (pass == 1) {
+            updateWrapper.eq("id", id).set("status", "已通过");
+        }else if (pass ==0){
+            updateWrapper.eq("id", id).set("status", "不通过");
+        }
         Integer rows = experienceMapper.update(null, updateWrapper);
     }
 }
